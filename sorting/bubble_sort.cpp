@@ -1,3 +1,17 @@
+/*
+ * Bubble sort
+ *
+ * Repeatedly walks through the array and swaps neighbours that are in the
+ * wrong order. After pass i the i biggest elements are at the end.
+ *
+ * Time:   O(n^2)
+ * Memory: O(1)
+ *
+ * Input:  n, then n integers
+ * Output: the sorted numbers, one per line
+ *
+ * Example: echo "5  3 1 4 1 5" | ./bubble_sort
+ */
 #include <iostream>
 #include <utility>
 #include <vector>

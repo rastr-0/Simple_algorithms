@@ -1,3 +1,19 @@
+/*
+ * A* search on a grid
+ *
+ * Best-first search that always expands the cell with the smallest
+ * f = g (steps so far) + h (estimated steps left). Moves in 8 directions;
+ * the Chebyshev distance heuristic never overestimates, so the found path is
+ * the shortest one.
+ *
+ * Time:   O(R * C * log(R * C))
+ * Memory: O(R * C)
+ *
+ * Input:  none - the grid (1 = open, 0 = wall), start and end are in main()
+ * Output: the path as a list of (row;col) cells
+ *
+ * Example: ./a_star
+ */
 #include <algorithm>
 #include <cstdlib>
 #include <functional>

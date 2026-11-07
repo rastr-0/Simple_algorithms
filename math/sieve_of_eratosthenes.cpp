@@ -1,3 +1,17 @@
+/*
+ * Sieve of Eratosthenes
+ *
+ * Finds all primes up to n: start with everything marked prime, then for
+ * every prime p cross out its multiples starting from p * p.
+ *
+ * Time:   O(n log log n)
+ * Memory: O(n)
+ *
+ * Input:  n
+ * Output: all primes <= n separated by spaces
+ *
+ * Example: echo "30" | ./sieve_of_eratosthenes
+ */
 #include <iostream>
 #include <vector>
 void eratosthenes_sieve(long end){

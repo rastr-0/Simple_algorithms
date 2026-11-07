@@ -1,3 +1,18 @@
+/*
+ * Dijkstra's algorithm
+ *
+ * Shortest paths from one vertex to all the others in a graph with
+ * non-negative edge weights: repeatedly take the closest unvisited vertex
+ * and relax all its outgoing edges.
+ *
+ * Time:   O(V^2 + V * E) (simple version without a priority queue)
+ * Memory: O(V)
+ *
+ * Input:  N S M, then M directed edges "from to weight"; vertices are 0-based
+ * Output: "S i = distance" for every vertex i (or "unreachable")
+ *
+ * Example: printf "3 0 3\n0 1 4\n0 2 1\n2 1 2\n" | ./dijkstra
+ */
 #include <iostream>
 #include <climits>
 #include <vector>

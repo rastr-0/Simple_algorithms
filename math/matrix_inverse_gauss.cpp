@@ -1,3 +1,18 @@
+/*
+ * Matrix inverse (Gauss-Jordan elimination)
+ *
+ * Writes the identity matrix next to A ([A | I]) and uses row operations to
+ * turn the left half into I; the right half then becomes A^-1. Uses partial
+ * pivoting (swaps in the row with the biggest pivot) to avoid dividing by zero.
+ *
+ * Time:   O(n^3)
+ * Memory: O(n^2)
+ *
+ * Input:  n n (rows and columns), then the n x n matrix
+ * Output: the inverse matrix, or a message if A is singular
+ *
+ * Example: echo "2 2  4 7  2 6" | ./matrix_inverse_gauss
+ */
 #include <iostream>
 #include <vector>
 #include <cmath>

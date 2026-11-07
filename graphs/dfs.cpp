@@ -1,3 +1,17 @@
+/*
+ * Depth-first search (DFS) - reachability
+ *
+ * Goes as deep as possible along each branch (using an explicit stack)
+ * before backtracking, and answers whether F can be reached from S.
+ *
+ * Time:   O(V^2) with an adjacency matrix
+ * Memory: O(V^2) stack in the worst case
+ *
+ * Input:  N S F, then an N x N adjacency matrix (1 = edge); vertices are 1-based here
+ * Output: Yes or No
+ *
+ * Example: printf "3 1 3\n0 1 0\n1 0 1\n0 1 0\n" | ./dfs
+ */
 #include <iostream>
 #include <stack>
 #include <vector>

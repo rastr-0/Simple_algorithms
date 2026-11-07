@@ -1,3 +1,17 @@
+/*
+ * Hash table (separate chaining)
+ *
+ * Maps int keys to strings. The key is hashed into one of 100 buckets and
+ * every bucket is a linked list, so colliding keys just share a list.
+ *
+ * Time:   O(1) average insert/search/remove, O(n) worst case
+ * Memory: O(n + buckets)
+ *
+ * Input:  none - a demo is in main()
+ * Output: what happens on each insert/search/remove
+ *
+ * Example: ./hash_table
+ */
 #include <iostream>
 #include <list>
 #include <string>

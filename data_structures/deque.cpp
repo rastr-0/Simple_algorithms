@@ -1,3 +1,17 @@
+/*
+ * Deque (doubly linked list)
+ *
+ * Double-ended queue: push and pop on both ends.
+ *
+ * Time:   O(1) for every push/pop, O(n) count
+ * Memory: O(n)
+ *
+ * Input:  commands: push_back <n>, push_front <n>, pop_back, pop_front, back, front,
+ *                  size, count; finish with 0
+ * Output: values of pop/back/front (-1 if empty), count prints rear to front
+ *
+ * Example: printf "push_back 1\npush_front 2\npop_back\nfront\n0\n" | ./deque
+ */
 #include <iostream>
 #include <string>
 template<typename T>

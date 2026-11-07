@@ -1,4 +1,17 @@
-// It's greedy realisatin of version a knapsack where you can divide elements 
+/*
+ * Fractional knapsack (greedy)
+ *
+ * Items can be cut, so greedily take the items with the best value/weight
+ * ratio first, and a fraction of the first one that doesn't fit.
+ *
+ * Time:   O(n log n)
+ * Memory: O(n)
+ *
+ * Input:  none - items and capacity W are in main()
+ * Output: the maximum total value
+ *
+ * Example: ./knapsack_fractional_greedy
+ */
 #include <vector>
 #include <iterator>
 #include <algorithm>

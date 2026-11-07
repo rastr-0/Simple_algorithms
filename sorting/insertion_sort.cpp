@@ -1,3 +1,17 @@
+/*
+ * Insertion sort
+ *
+ * Takes elements one by one and shifts them left until they are in place
+ * inside the already sorted prefix (like sorting cards in your hand).
+ *
+ * Time:   O(n^2), O(n) on already sorted input
+ * Memory: O(1)
+ *
+ * Input:  n, then n integers
+ * Output: the sorted numbers, one per line
+ *
+ * Example: echo "5  3 1 4 1 5" | ./insertion_sort
+ */
 #include <iostream>
 #include <vector>
 

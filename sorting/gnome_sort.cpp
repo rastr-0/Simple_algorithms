@@ -1,3 +1,17 @@
+/*
+ * Gnome sort
+ *
+ * Like a garden gnome sorting flower pots: if the current element is smaller
+ * than the previous one, swap them and step back, otherwise step forward.
+ *
+ * Time:   O(n^2), O(n) on already sorted input
+ * Memory: O(1)
+ *
+ * Input:  n, then n integers
+ * Output: the sorted numbers, one per line
+ *
+ * Example: echo "5  3 1 4 1 5" | ./gnome_sort
+ */
 #include <iostream>
 #include <utility>
 #include <vector>

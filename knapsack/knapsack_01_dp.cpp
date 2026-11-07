@@ -1,4 +1,18 @@
-// This's implementation for the 0-1 knapsack problem, in this programm I use dynamic programming approach
+/*
+ * 0/1 knapsack (dynamic programming)
+ *
+ * Each item is either taken whole or not at all. matrix[i][j] is the best
+ * value using the first i items with capacity j:
+ *   matrix[i][j] = max(matrix[i-1][j], value_i + matrix[i-1][j - weight_i])
+ *
+ * Time:   O(n * W)
+ * Memory: O(n * W)
+ *
+ * Input:  none - items and capacity W are in main()
+ * Output: the maximum total value
+ *
+ * Example: ./knapsack_01_dp
+ */
 #include <vector>
 #include <iostream>
 

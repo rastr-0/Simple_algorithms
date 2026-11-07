@@ -1,3 +1,16 @@
+/*
+ * Queue (linked list)
+ *
+ * FIFO container: push at the rear, pop from the front.
+ *
+ * Time:   O(1) push/pop, O(n) count
+ * Memory: O(n)
+ *
+ * Input:  commands: push <n>, pop, count, size; finish with 0
+ * Output: pop prints the value (-1 if empty), count prints all items front to rear
+ *
+ * Example: printf "push 1\npush 2\npop\nsize\n0\n" | ./queue
+ */
 #include <iostream>
 #include <string>
 template<typename T>

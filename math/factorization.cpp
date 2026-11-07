@@ -1,3 +1,17 @@
+/*
+ * Prime factorization (trial division)
+ *
+ * Divides the number by 2, 3, 4, ... while it's divisible. Whatever is left
+ * after sqrt(n) is a prime factor too.
+ *
+ * Time:   O(sqrt(n))
+ * Memory: O(log n) for the factors
+ *
+ * Input:  an integer n >= 2
+ * Output: the prime factors in ascending order, one per line
+ *
+ * Example: echo "360" | ./factorization
+ */
 #include <iostream>
 #include <vector>
 std::vector<long long> factorization(long long);

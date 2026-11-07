@@ -1,3 +1,17 @@
+/*
+ * Breadth-first search (BFS) - shortest distance
+ *
+ * Explores the graph level by level from the start vertex, so the first time
+ * a vertex is reached it's by the fewest possible edges.
+ *
+ * Time:   O(V^2) with an adjacency matrix
+ * Memory: O(V)
+ *
+ * Input:  N S F, then an N x N adjacency matrix (1 = edge); vertices are 0-based
+ * Output: number of edges on the shortest path from S to F, -1 if unreachable
+ *
+ * Example: printf "3 0 2\n0 1 0\n1 0 1\n0 1 0\n" | ./bfs
+ */
 #include <iostream>
 #include <queue>
 #include <vector>

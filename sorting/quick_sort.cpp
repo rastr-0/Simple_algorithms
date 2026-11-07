@@ -1,3 +1,17 @@
+/*
+ * Quick sort
+ *
+ * Picks a pivot, moves smaller elements to the left and bigger ones to the
+ * right (Hoare partition), then sorts both parts recursively.
+ *
+ * Time:   O(n log n) average, O(n^2) worst case
+ * Memory: O(log n) recursion stack on average
+ *
+ * Input:  n, then n integers
+ * Output: the sorted numbers, one per line
+ *
+ * Example: echo "5  3 1 4 1 5" | ./quick_sort
+ */
 #include <iostream>
 #include <utility>
 template<typename T>

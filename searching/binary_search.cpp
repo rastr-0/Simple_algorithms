@@ -1,3 +1,17 @@
+/*
+ * Binary search
+ *
+ * Finds a value in a sorted array by comparing it with the middle element
+ * and discarding the half where it can't be. Recursive.
+ *
+ * Time:   O(log n)
+ * Memory: O(log n) recursion stack
+ *
+ * Input:  n, then n integers in ascending order, then the value to find
+ * Output: index of the value (0-based) or -1 if it's not there
+ *
+ * Example: echo "5  1 3 5 7 9  7" | ./binary_search
+ */
 #include <iostream>
 #include <vector>
 long binary_search(std::vector<long>& arr, long num, long left, long right) {

@@ -1,3 +1,17 @@
+/*
+ * Merge sort
+ *
+ * Splits the array in two halves, sorts each half recursively and merges
+ * the two sorted halves. Stable.
+ *
+ * Time:   O(n log n)
+ * Memory: O(n) for the merge buffers
+ *
+ * Input:  n, then n integers
+ * Output: the sorted numbers, one per line
+ *
+ * Example: echo "5  3 1 4 1 5" | ./merge_sort
+ */
 #include <iostream>
 #include <vector>
 void merge_sort(std::vector<long>& arr, long left, long right);

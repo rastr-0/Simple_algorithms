@@ -1,3 +1,18 @@
+/*
+ * Lee algorithm (wave propagation)
+ *
+ * BFS on a grid with 4-direction moves: a "wave" spreads from the start
+ * cell one step at a time until it hits the destination. Classic algorithm for
+ * maze solving and PCB routing.
+ *
+ * Time:   O(R * C)
+ * Memory: O(R * C)
+ *
+ * Input:  none - the grid (1 = open, 0 = wall), start and end are in main()
+ * Output: length of the shortest path or a message that there's no path
+ *
+ * Example: ./lee
+ */
 #include <iostream>
 #include <array>
 #include <queue>

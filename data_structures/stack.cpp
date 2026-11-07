@@ -1,3 +1,16 @@
+/*
+ * Stack (linked list)
+ *
+ * LIFO container: push and pop happen at the same end (the top).
+ *
+ * Time:   O(1) push/pop, O(n) count
+ * Memory: O(n)
+ *
+ * Input:  commands: push <n>, pop, count, is_empty, empty; finish with -1
+ * Output: pop prints the value (-1 if empty), count prints all items top to bottom
+ *
+ * Example: printf "push 1\npush 2\npop\ncount\n-1\n" | ./stack
+ */
 #include <iostream>
 #include <string>
 template<typename T>

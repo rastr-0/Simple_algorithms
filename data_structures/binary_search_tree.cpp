@@ -1,3 +1,18 @@
+/*
+ * Binary search tree
+ *
+ * Every node keeps smaller keys in the left subtree and bigger (or equal) ones
+ * in the right subtree. Supports insert, search and the three depth-first
+ * traversals (inorder prints the keys sorted).
+ *
+ * Time:   O(h) insert/search, h = tree height (log n if balanced, n if not)
+ * Memory: O(n)
+ *
+ * Input:  none - a demo tree is built in main()
+ * Output: the traversals and a couple of searches
+ *
+ * Example: ./binary_search_tree
+ */
 #include<iostream>
 struct Node {
 	int data;

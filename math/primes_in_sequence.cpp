@@ -1,3 +1,17 @@
+/*
+ * Primes in a sequence
+ *
+ * Reads numbers and keeps the prime ones, testing each by trial division up
+ * to its square root. Better than the sieve when the numbers are few but big.
+ *
+ * Time:   O(sqrt(x)) per number
+ * Memory: O(count of primes)
+ *
+ * Input:  integers, finished with 0
+ * Output: the prime ones, one per line
+ *
+ * Example: echo "2 4 7 9 11 0" | ./primes_in_sequence
+ */
 #include <iostream>
 #include <vector>
 bool is_prime_number(long long a)

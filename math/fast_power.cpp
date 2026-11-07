@@ -1,3 +1,20 @@
+/*
+ * Fast exponentiation (binary exponentiation)
+ *
+ * Computes x^y in O(log y) multiplications by squaring: x^(2k) = (x^k)^2.
+ * Three versions: plain recursive x^y, and x^y mod n written both as a loop
+ * and recursively (the modular one is what RSA uses).
+ * NOTE: x * x must fit into long long, so n should stay below ~3 * 10^9,
+ * and plain x^y overflows for big results.
+ *
+ * Time:   O(log y)
+ * Memory: O(1) loop, O(log y) recursive
+ *
+ * Input:  x y n (y >= 0, n > 0)
+ * Output: x^y, then x^y mod n from both versions
+ *
+ * Example: echo "3 13 7" | ./fast_power
+ */
 #include <iostream>
 
 // x^y without modulus, recursive.

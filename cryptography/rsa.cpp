@@ -1,10 +1,20 @@
 /*
-This is an example of RSA realisation.
-In this code I do not use libraries for big numbers.
-But functions designed in a good way to work with big numbers.
-*/
-
-// should be compiled with c++17
+ * RSA (toy version)
+ *
+ * Generates two random primes p, q (1000..11000), builds the public key
+ * (e, n) and the private key (d, n), then encrypts c = m^e mod n and
+ * decrypts m = c^d mod n. Uses plain long long, so it's for learning only -
+ * real RSA uses primes with hundreds of digits.
+ *
+ * Time:   O(sqrt(p) + log e) per step, roughly
+ * Memory: O(1)
+ *
+ * Input:  a number m with 0 <= m < n (n is printed, it's always > 10^6)
+ * Output: the keys, the encrypted number and the decrypted one
+ *
+ * Example: echo "123456" | ./rsa
+ */
+// needs C++17 (structured bindings)
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
