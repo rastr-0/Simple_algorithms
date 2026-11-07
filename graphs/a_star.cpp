@@ -1,13 +1,11 @@
-#include <cmath>
-#include <chrono>
-#include <queue>
-#include <vector>
+#include <algorithm>
+#include <cstdlib>
+#include <functional>
 #include <iostream>
-#include <tuple>
 #include <queue>
-#include <set>
 #include <stack>
-#include <array>
+#include <tuple>
+#include <vector>
 
 typedef std::pair<int, int> Pair;
 typedef std::tuple<float, int, int> Tuple;
@@ -19,15 +17,17 @@ struct Cell{
 	float f, g;
 	Cell()
 		: parent(-1, -1),
+		h(-1),
 		f(-1),
-		g(-1),
-		h(-1)
+		g(-1)
 	{}
 };
 
 bool is_valid(const std::vector<std::vector<int>>& grid, const Pair& point){
-	return (point.first >= 0 && point.first < grid.size())
-		&& (point.second >= 0 && point.second < grid.size());
+	const int rows = static_cast<int>(grid.size());
+	const int cols = static_cast<int>(grid[0].size());
+	return (point.first >= 0 && point.first < rows)
+		&& (point.second >= 0 && point.second < cols);
 }
 
 bool is_unblocked(const std::vector<std::vector<int>>& grid, const Pair& point){
@@ -39,8 +39,11 @@ bool is_destination_point(const Pair& point, const Pair& dest){
 	return point == dest;
 }
 
+// Chebyshev distance: with 8-direction moves of cost 1 this never overestimates
+// the real distance, so A* is guaranteed to find a shortest path
+// (Manhattan distance would overestimate diagonal moves).
 int calculate_heuristics(const Pair& current, const Pair& dest){
-	return abs(current.first - dest.first) + abs(current.second - dest.second);
+	return std::max(std::abs(current.first - dest.first), std::abs(current.second - dest.second));
 }
 
 void trace_path(const std::vector<std::vector<Cell>>& cell_details, const Pair& end_point){
@@ -48,7 +51,8 @@ void trace_path(const std::vector<std::vector<Cell>>& cell_details, const Pair& 
 	// create stack for printing points in the right way(start -> end)
 	std::stack<Pair> path;
 	int i, j;
-	i = j = end_point.second;
+	i = end_point.first;
+	j = end_point.second;
 	// next point from the start
 	Pair next_point = cell_details[i][j].parent;
 	do{
@@ -84,12 +88,12 @@ void A_star(const std::vector<std::vector<int>>& grid, const Pair& start_point, 
 	}
 	
 	// vector for points which we've already visited
-	std::vector<std::vector<bool>> closed(grid.size(), std::vector<bool>(grid.size(), false));
+	std::vector<std::vector<bool>> closed(grid.size(), std::vector<bool>(grid[0].size(), false));
 	// vector for detaling information about each point
 	
 	std::vector<std::vector<Cell>> cell_details(grid.size());
-	for (int i = 0; i < cell_details.size(); ++i)
-		cell_details[i].resize(grid.size());
+	for (size_t i = 0; i < cell_details.size(); ++i)
+		cell_details[i].resize(grid[0].size());
 	int i = start_point.first;
 	int j = start_point.second;
 	cell_details[i][j].f = 0.0;
@@ -182,7 +186,7 @@ void A_star(const std::vector<std::vector<int>>& grid, const Pair& start_point, 
 	if the end point isn't find and the open list is empty,
 	that's mean we failed to find the end point
 	*/
-	std::cout << "There're any path between start and end points";
+	std::cout << "There is no path between start and end points";
 } 
 
 int main(){

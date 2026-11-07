@@ -1,9 +1,8 @@
 #include <iostream>
 #include <vector>
-using namespace std;
 bool is_prime_number(long long a)
 {
-	if (a == 1 || a == 0)
+	if (a < 2) // 0, 1 and negative numbers are not prime
 		return false;
 	for (long long i = 2; i * i <= a; i++)
 	{
@@ -14,11 +13,11 @@ bool is_prime_number(long long a)
 }
 int main()
 {
-	vector <long long> prime_numbers;
-	long long number = 1;
-	while (number != 0)
+	std::vector<long long> prime_numbers;
+	long long number;
+	// read numbers until 0 (or until the input ends)
+	while (std::cin >> number && number != 0)
 	{
-		std::cin >> number;
 		if (is_prime_number(number))
 			prime_numbers.push_back(number);
 	}

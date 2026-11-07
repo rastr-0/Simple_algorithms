@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include <vector>
 std::vector<long>& bubble_sort(std::vector<long>& arr);
 
@@ -15,7 +16,7 @@ int main(){
 	return 0;
 }
 std::vector<long>& bubble_sort(std::vector<long>& arr){
-	long size = arr.size() - 1;
+	long size = static_cast<long>(arr.size()) - 1;
 	for(long i = 0; i < size; i++){
 		for(long j = 0; j < size - i; j++){
 			if (arr[j] > arr[j + 1]){

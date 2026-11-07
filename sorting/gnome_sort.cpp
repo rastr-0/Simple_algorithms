@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 #include <vector>
 
 std::vector<long>& gnome_sort(std::vector<long>& arr);
@@ -17,7 +18,7 @@ std::vector<long>& gnome_sort(std::vector<long>& arr){
 	long i = 1;
 	long size = arr.size();
 	while(i < size){
-		if (arr[i] < arr[i - 1] && i >= 1){
+		if (i >= 1 && arr[i] < arr[i - 1]){ // check i first, so arr[-1] is never read
 			std::swap(arr[i], arr[i - 1]);
 			i--;
 		}

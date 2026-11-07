@@ -1,6 +1,7 @@
 #include <iostream>
+#include <utility>
 #include <vector>
-std::vector<long>& insertion_sort(std::vector<long>& arr);
+std::vector<long>& gapped_exchange_sort(std::vector<long>& arr);
 int main() {
     long size;
     std::cin >> size;
@@ -8,13 +9,13 @@ int main() {
     for (auto& i : arr) {
         std::cin >> i;
     }
-    arr = insertion_sort(arr);
+    arr = gapped_exchange_sort(arr);
     for (auto i : arr) {
         std::cout << i << std::endl;
     }
 
 }
-std::vector<long>& insertion_sort(std::vector<long>& arr) {
+std::vector<long>& gapped_exchange_sort(std::vector<long>& arr) {
     long size = arr.size();
     long h = size / 2;
     while (h > 0) {

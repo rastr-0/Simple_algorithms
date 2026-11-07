@@ -16,7 +16,14 @@ public:
 	deque() {
 		front = nullptr;
 		rear = nullptr;
+		size = 0;
 	}
+	~deque() {
+		while (size > 0)
+			pop_back();
+	}
+	deque(const deque&) = delete;
+	deque& operator=(const deque&) = delete;
 	void push_back(T item) {
 		Node<T>* temp;
 		temp = new Node<T>;
@@ -62,6 +69,7 @@ public:
 		else if (size == 1) {
 			T item = rear->item;
 			delete rear;
+			front = rear = nullptr; // the deque is empty again
 			size--;
 			return item;
 		}
@@ -81,6 +89,7 @@ public:
 		else if (size == 1) {
 			T item = front->item;
 			delete front;
+			front = rear = nullptr; // the deque is empty again
 			size--;
 			return item;
 		}
@@ -118,8 +127,7 @@ public:
 int main() {
 	deque<long> first;
 	std::string str;
-	while (str != "0") {
-		std::cin >> str;
+	while (std::cin >> str && str != "0") {
 		if (str == "push_back") {
 			long num;
 			std::cin >> num;

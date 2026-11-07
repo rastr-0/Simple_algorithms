@@ -6,14 +6,16 @@ But functions designed in a good way to work with big numbers.
 
 // should be compiled with c++17
 #include <iostream>
+#include <cstdlib>
 #include <ctime>
+#include <utility>
 
 #define ll long long
 
 bool is_prime(ll num){
     if (num == 1 || num == 0)
 		return false;
-	for (int i = 2; i * i <= num; i++)
+	for (ll i = 2; i * i <= num; i++)
 	{
 		if (num % i == 0)
 			return false;
@@ -28,7 +30,8 @@ std::pair<ll, ll> generate_prime_numbers(ll low_lim, ll upper_lim){
     do {
         first_num = low_lim + (rand() % upper_lim);
         second_num = low_lim + (rand() % upper_lim); 
-    } while (!is_prime(first_num) || !is_prime(second_num));
+    // p and q must be two *different* primes, otherwise phi(n) != (p - 1)(q - 1)
+    } while (!is_prime(first_num) || !is_prime(second_num) || first_num == second_num);
     
     return std::make_pair(first_num, second_num);
 }
@@ -92,21 +95,26 @@ int main()
     
     auto [p, q] = generate_prime_numbers(1000, 10000);
     ll n = p * q;
+    if (m < 0 || m >= n){
+        // RSA works on numbers modulo n, a bigger message can't be restored
+        std::cout << "The number must be in range [0, " << n << ")" << std::endl;
+        return 1;
+    }
     ll phi_res = phi(p, q);
     ll e = find_coprime(phi_res);
     ll d = calculate_d(phi_res, e);
     
     std::cout << "(" << e << "," << " " << n << ") -- public key" << std::endl;
-    std::cout << "(" << e << "," << " " << d << ") -- private key" << std::endl;
+    std::cout << "(" << d << "," << " " << n << ") -- private key" << std::endl;
     /*
     (e, n) pair stands for public key, could be published anywhere
-    (e, d) pair stands for private key and keeps in secret
+    (d, n) pair stands for private key and keeps in secret
     */
     // encrypted text (c) = m^e mod n
     ll c = pow_mod(m, e, n);
     std::cout << "encrypted text: " << c << std::endl;
     // decrypted text (m) = c^d mod n
     m = pow_mod(c, d, n);
-    std::cout << "decrypted text: " << m;
+    std::cout << "decrypted text: " << m << std::endl;
     return 0;
 }

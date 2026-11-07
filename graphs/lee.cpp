@@ -20,6 +20,8 @@ bool Check(int row, int col){
 }
 
 int LeeAlgorithm(const std::array<std::array<int, COL>, ROW>& matrix, const Cell& initial, const Cell& dest){
+    if (!Check(initial.x, initial.y) || !Check(dest.x, dest.y))
+        return -1;
     if (matrix[initial.x][initial.y] != 1 || matrix[dest.x][dest.y] != 1)
         return -1;
     std::array<int, 4> RowNum = {-1, 0, 0, 1};

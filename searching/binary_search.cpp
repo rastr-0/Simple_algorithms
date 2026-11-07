@@ -18,5 +18,5 @@ int main() {
 	for (auto& i : arr)
 		std::cin >> i;
 	std::cin >> num;
-	std::cout << binary_search(arr, num, 0, arr.size() - 1);
+	std::cout << binary_search(arr, num, 0, static_cast<long>(arr.size()) - 1) << std::endl;
 }

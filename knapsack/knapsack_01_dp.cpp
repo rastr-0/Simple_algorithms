@@ -16,9 +16,10 @@ int max(const int first, const int second){
 }
 int knapsack(const std::vector<Item>& arr, const int W){
 	std::vector<std::vector<int>> matrix(arr.size() + 1, std::vector<int>(W + 1));
-	int i, j;
-	for (i = 0; i <= arr.size(); i++){
-		for (j = 0; j <= W; j++){
+	const int n = static_cast<int>(arr.size());
+	// matrix[i][j] = best value using only the first i items with capacity j
+	for (int i = 0; i <= n; i++){
+		for (int j = 0; j <= W; j++){
 			if (i == 0 || j == 0)
 				matrix[i][j] = 0;
 			else if (arr[i - 1].weight <= j)
@@ -28,16 +29,11 @@ int knapsack(const std::vector<Item>& arr, const int W){
 				matrix[i][j] = matrix[i - 1][j];
 		}
 	}
-	for(int ki = 0; ki <= arr.size(); ki++){
-		for (int kj = 0; kj <= W; kj++){
-			std::cout << "matrix" << "[" << ki << "]" << ""<< kj<< "]" << " = " << matrix[ki][kj] << std::endl;
-		}
-		std::cout << std::endl << std::endl;
-	}
-	return matrix[i - 1][j - 1];
+	return matrix[n][W];
 }
 int main(){
+	// {weight, value}
 	std::vector<Item> arr = {{10, 60}, {20, 100}, {30, 120}};
 	const int W = 50;
-	std::cout << knapsack(arr, W);
+	std::cout << knapsack(arr, W) << std::endl;
 }

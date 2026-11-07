@@ -13,7 +13,7 @@ int bfs(const std::vector<std::vector<int>>& matrix, int start_point, int end_po
 	while (!q.empty()) {
 		int current = q.front();
 		q.pop();
-		for (int i = 0; i < matrix.size(); i++) {
+		for (int i = 0; i < static_cast<int>(matrix.size()); i++) {
 			if (dist[i] == -1 && matrix[current][i] == 1) {
 				q.push(i);
 				dist[i] = dist[current] + 1;
@@ -22,6 +22,7 @@ int bfs(const std::vector<std::vector<int>>& matrix, int start_point, int end_po
 		if (current == end_point)
 			return dist[current];
 	}
+	return -1; // end point is unreachable
 }
 int main()
 {

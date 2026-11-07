@@ -16,6 +16,12 @@ public:
 		front = rear = nullptr;
 		size = 0;
 	}
+	~queue() {
+		while (front != nullptr)
+			pop();
+	}
+	queue(const queue&) = delete;
+	queue& operator=(const queue&) = delete;
 	void push(T item) {
 		Node<T>* temp;
 		temp = new Node<T>;
@@ -37,6 +43,8 @@ public:
 			temp = front;
 			item = temp->item;
 			front = front->next;
+			if (front == nullptr)
+				rear = nullptr; // the queue is empty again
 			delete temp;
 			size--;
 			return item;
@@ -45,7 +53,7 @@ public:
 	}
 	void count() {
 		if (front == nullptr && rear == nullptr)
-			std::cout << "-1"; // smth goes wrong
+			std::cout << "-1" << std::endl; // the queue is empty
 		else {
 			Node<T>* temp;
 			temp = front;
@@ -62,8 +70,7 @@ public:
 int main() {
 	queue<long> first;
 	std::string str;
-	while (str != "0") {
-		std::cin >> str;
+	while (std::cin >> str && str != "0") {
 		if (str == "push") {
 			long num;
 			std::cin >> num;

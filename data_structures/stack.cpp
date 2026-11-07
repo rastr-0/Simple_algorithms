@@ -13,6 +13,11 @@ public:
 	stack() {
 		ptop = nullptr;
 	}
+	~stack() {
+		empty();
+	}
+	stack(const stack&) = delete;
+	stack& operator=(const stack&) = delete;
 	void push(T element) {
 		Node<T>* p;
 		p = new Node<T>;
@@ -22,7 +27,7 @@ public:
 	}
 	void count() {
 		if (ptop == nullptr)
-			std::cout << "0";
+			std::cout << "0" << std::endl;
 		else {
 			Node<T>* p;
 			p = ptop;
@@ -65,8 +70,7 @@ public:
 int main() {
 	stack<long> first;
 	std::string str;
-	while (str != "-1") {
-		std::cin >> str;
+	while (std::cin >> str && str != "-1") {
 		if (str == "push") {
 			long num;
 			std::cin >> num;

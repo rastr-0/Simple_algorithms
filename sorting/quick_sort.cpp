@@ -1,4 +1,5 @@
 #include <iostream>
+#include <utility>
 template<typename T>
 void quick_sort(T* arr, long size);
 int main(){
@@ -15,8 +16,10 @@ int main(){
 template <typename T>
 void quick_sort(T* arr, long size)
 {
+	if (size < 2)
+		return;
 	long left = 0, right = size - 1;
-	long mid = arr[size / 3];
+	T mid = arr[size / 3];
 	do
 	{
 		while (arr[left] < mid)
@@ -31,7 +34,7 @@ void quick_sort(T* arr, long size)
 		}
 	} while (left <= right);
 	if (right > 0)
-		quick_sort(arr, right);
+		quick_sort(arr, right + 1); // [0..right] holds right + 1 elements
 	if (size > left)
 		quick_sort(arr + left, size - left);
 }

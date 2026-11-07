@@ -49,12 +49,13 @@ public:
         }
         return true;
     }
-    const int hash_function(const int key){
-        // simple hash function which distributes number based on there last digit
+    int hash_function(const int key) const {
+        // simple hash function which distributes numbers based on their last two digits
         // 101 -> 1 hash group
         // 2 -> 2 hash group
         // 100005 -> 5 hash group
-        return key % hash_groups;
+        // -5 -> 95 hash group (C++ % can be negative, so shift it back into [0, hash_groups))
+        return ((key % hash_groups) + hash_groups) % hash_groups;
     }
     void search_table(const int key) {
         int hash_value = hash_function(key);
@@ -70,7 +71,7 @@ public:
         for (int i = 0; i < hash_groups; i++){
             if (table[i].size() == 0)
                 continue;
-            for (const auto item : table[i]) {
+            for (const auto& item : table[i]) {
                 std::cout << "Key: " << item.first << " and Value: " << item.second << std::endl;
             }
         }
@@ -83,5 +84,12 @@ int main(){
     table.insert_item(10005, "one");
     table.insert_item(2, "two");
 
+    table.insert_item(-5, "minus five");
+    table.insert_item(2, "two again");
+
+    table.search_table(10005);
     table.search_table(1005);
+    table.remove_item(0);
+    table.search_table(0);
+    table.print();
 }

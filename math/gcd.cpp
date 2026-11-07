@@ -1,5 +1,6 @@
 #include <iostream>
-inline long gcd(long long first, long long second){
+#include <cstdlib>
+long long gcd(long long first, long long second){
 	if(first == 0)
 		return second;
 	else if (second == 0)
@@ -10,6 +11,7 @@ inline long gcd(long long first, long long second){
 int main(){
 	long long num, num_1;
 	std::cin >> num >> num_1;
-	std::cout << gcd(num , num_1);
+	// gcd is defined as non-negative, so work with absolute values
+	std::cout << gcd(std::llabs(num), std::llabs(num_1)) << std::endl;
 	return 0;
 }

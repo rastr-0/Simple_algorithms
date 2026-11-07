@@ -1,12 +1,11 @@
 #include <iostream>
-#include <algorithm>
 #include <climits>
 #include <vector>
 using std::vector;
 int find_vertex_with_min_weight(const vector<long>& weight_of_vertices, const vector<bool>& visited) {
 	long min = LONG_MAX;
-	int result = 0;
-	for (int i = 0; i < weight_of_vertices.size(); i++) {
+	int result = -1; // -1 means no reachable unvisited vertex is left
+	for (int i = 0; i < static_cast<int>(weight_of_vertices.size()); i++) {
 		if (visited[i] == false && weight_of_vertices[i] < min) {
 			min = weight_of_vertices[i];
 			result = i;
@@ -14,21 +13,14 @@ int find_vertex_with_min_weight(const vector<long>& weight_of_vertices, const ve
 	}
 	return result;
 }
-bool is_there_false(bool item) {
-	return item == false;
-}
 vector<long> dijkstra_algorithm(vector<vector<long>>& list_of_ribs, const long start_point, const long size) {
 	long current = start_point;
-	vector<bool> visited(size);
-	for (auto i : visited)
-		i = false;
-	vector<long> weight_of_vertices(size);
-	for (auto& i : weight_of_vertices)
-		i = LONG_MAX;
+	vector<bool> visited(size, false);
+	vector<long> weight_of_vertices(size, LONG_MAX);
 	weight_of_vertices[current] = 0;
 	long sum = 0;
-	while (std::any_of(visited.begin(), visited.end(), is_there_false)) {
-		for (int i = 0; i < size; i++) {
+	while (current != -1) {
+		for (size_t i = 0; i < list_of_ribs.size(); i++) {
 			if (list_of_ribs[i][0] == current) {
 				sum = 0;
 				sum = list_of_ribs[i][2] + weight_of_vertices[current];
@@ -44,7 +36,7 @@ vector<long> dijkstra_algorithm(vector<vector<long>>& list_of_ribs, const long s
 int main()
 {
 	/* I`m using list of ribs for input*/
-	long N; // number ribs
+	long N; // number of vertices
 	long S; // start_point
 	long number_of_pairs; // how many edges are in graph(for example, 1 2 and 2 1 - two different pairs)
 	std::cin >> N >> S >> number_of_pairs;
@@ -56,7 +48,11 @@ int main()
 		}
 	}
 	vector<long> result = dijkstra_algorithm(list_of_ribs, S, N);
-	for (int i = 1; i < N; i++) {
-		std::cout << S << " " << i << " = " << result[i] << std::endl;
+	for (int i = 0; i < N; i++) {
+		std::cout << S << " " << i << " = ";
+		if (result[i] == LONG_MAX)
+			std::cout << "unreachable" << std::endl;
+		else
+			std::cout << result[i] << std::endl;
 	}
 }

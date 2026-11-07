@@ -26,6 +26,10 @@ private:
 	Node* search(int key, Node* leaf);
 public:
 	Binary_tree();
+	~Binary_tree();
+	// copying would make two trees share (and double-free) the same nodes
+	Binary_tree(const Binary_tree&) = delete;
+	Binary_tree& operator=(const Binary_tree&) = delete;
 	void insert(int key);
 	void destroy();
 	void inorder_print();
@@ -36,6 +40,9 @@ public:
 // public functions
 Binary_tree::Binary_tree() {
 	root = nullptr;
+}
+Binary_tree::~Binary_tree() {
+	destroy();
 }
 Node* Binary_tree::search(int key) {
 	return search(key, root);
@@ -50,6 +57,7 @@ void Binary_tree::insert(int key) {
 }
 void Binary_tree::destroy() {
 	destroy(root);
+	root = nullptr;
 }
 void Binary_tree::inorder_print() {
 	inorder_print(root);
@@ -102,16 +110,16 @@ void Binary_tree::inorder_print(Node* leaf) {
 void Binary_tree::preorder_print(Node* leaf) {
 	if (leaf != nullptr) {
 		std::cout << leaf->data << " ";
-		inorder_print(leaf->left);
-		inorder_print(leaf->right);
+		preorder_print(leaf->left);
+		preorder_print(leaf->right);
 	}
 }
 // left - > right - > root
 void Binary_tree::postorder_print(Node* leaf) {
 	if (leaf != nullptr) {
-		inorder_print(leaf->left);
-		inorder_print(leaf->right);
-		std::cout << leaf->data;
+		postorder_print(leaf->left);
+		postorder_print(leaf->right);
+		std::cout << leaf->data << " ";
 	}
 }
 Node* Binary_tree::search(int key, Node* leaf) {
@@ -128,5 +136,19 @@ Node* Binary_tree::search(int key, Node* leaf) {
 }
 int main()
 {
-
+	/* small demo: build the tree
+	           5
+	         /   \
+	        3     8
+	       / \   / \
+	      1   4 7   9
+	*/
+	Binary_tree tree;
+	for (int key : {5, 3, 8, 1, 4, 7, 9})
+		tree.insert(key);
+	std::cout << "inorder:   "; tree.inorder_print();   std::cout << std::endl;
+	std::cout << "preorder:  "; tree.preorder_print();  std::cout << std::endl;
+	std::cout << "postorder: "; tree.postorder_print(); std::cout << std::endl;
+	std::cout << "search 4:  " << (tree.search(4) != nullptr ? "found" : "not found") << std::endl;
+	std::cout << "search 6:  " << (tree.search(6) != nullptr ? "found" : "not found") << std::endl;
 }
