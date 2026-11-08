@@ -1,2 +1,0 @@
-knapsack_problem.cpp -- version where it's allowed to divide items(greedy approach)
-knapsack_problem_0-1.cpp -- version, where it's NOT allowed to divide items(dynamic programming approach -> tabulation method)
